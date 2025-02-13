@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cambio-Fast</title>
+    <meta name="description" content="Currency Swap Application" />
+    <meta name="author" content="Currency Magic" />
+    <meta property="og:image" content="/og-image.png" />
+    <script>
+      // Crear un canvas para dibujar el ícono
+      window.onload = function() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 32;
+        canvas.height = 32;
+        const ctx = canvas.getContext('2d');
+        
+        if (ctx) {
+          // Establecer fondo verde (usando el color accent de la aplicación)
+          ctx.fillStyle = '#4ADE80';
+          ctx.fillRect(0, 0, 32, 32);
+          
+          // Dibujar el símbolo del dólar en blanco
+          ctx.fillStyle = '#FFFFFF';
+          ctx.font = 'bold 24px Arial';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('$', 16, 16);
+          
+          // Convertir el canvas a favicon
+          const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+          link.type = 'image/x-icon';
+          link.rel = 'shortcut icon';
+          link.href = canvas.toDataURL();
+          document.getElementsByTagName('head')[0].appendChild(link);
+        }
+      };
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
