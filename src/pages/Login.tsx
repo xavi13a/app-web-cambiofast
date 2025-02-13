@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Mail } from "lucide-react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
+import { AUTH_API } from "@/config/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ const Login = () => {
   const verifyToken = async (token: string) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:9091/auth/magic-login?token=${token}`, {
+      const response = await fetch(`${AUTH_API.verifyToken}?token=${token}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +49,7 @@ const Login = () => {
     setIsLoading(true);
     
     try {
-      const response = await fetch(`http://localhost:9091/auth/request-magic-link?email=${encodeURIComponent(email)}`, {
+      const response = await fetch(`${AUTH_API.magicLink}?email=${encodeURIComponent(email)}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
